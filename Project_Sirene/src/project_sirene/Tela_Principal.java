@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package project_sirene;
-
+//
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,12 +39,12 @@ public class Tela_Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         horas = new javax.swing.JTextField();
-        status_descreve = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         botao_ok = new javax.swing.JButton();
+        statusA_I = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,13 +72,6 @@ public class Tela_Principal extends javax.swing.JFrame {
             }
         });
 
-        status_descreve.setText("ex: intervalo");
-        status_descreve.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                status_descreveActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Elephant", 0, 24)); // NOI18N
         jLabel4.setText("Quadro da Sirene");
 
@@ -102,6 +95,13 @@ public class Tela_Principal extends javax.swing.JFrame {
             }
         });
 
+        statusA_I.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
+        statusA_I.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusA_IActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,15 +122,13 @@ public class Tela_Principal extends javax.swing.JFrame {
                                 .addGap(418, 418, 418))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(status_descreve, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(horas, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(statusA_I, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(horas, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(botao_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,9 +161,9 @@ public class Tela_Principal extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(status_descreve, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(toque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(toque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusA_I, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botao_ok)
                 .addGap(22, 22, 22))
@@ -182,19 +180,19 @@ public class Tela_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_horasActionPerformed
 
-    private void status_descreveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_status_descreveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_status_descreveActionPerformed
-
     private void botao_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_okActionPerformed
       AddRowJTable(new Object[] {
                                         turma.getSelectedItem(),
                                         horas.getText(),
-                                        status_descreve.getText(),
+                                        statusA_I.getSelectedItem(),
                                         toque.getSelectedItem()
                                        
        });
     }//GEN-LAST:event_botao_okActionPerformed
+
+    private void statusA_IActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusA_IActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusA_IActionPerformed
     public static void AddRowJTable (Object[] dataRow) {
         DefaultTableModel model = (DefaultTableModel)tabela.getModel();
         model.addRow(dataRow);
@@ -244,7 +242,7 @@ public class Tela_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField status_descreve;
+    private javax.swing.JComboBox<String> statusA_I;
     private static javax.swing.JTable tabela;
     private javax.swing.JComboBox<String> toque;
     private javax.swing.JComboBox<String> turma;
